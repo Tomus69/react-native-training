@@ -17,4 +17,11 @@ export default StyleSheet.createstyle = StyleSheet.create({
         textDecorationLine: 'underline',
         marginBottom: 10,
     },
+    list: {
+        flex: 1,
+        height: '100px',
+        borderWidth: 1,
+        borderColor: 'black',
+        padding: 10,
+    },
 });

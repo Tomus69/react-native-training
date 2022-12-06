@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TextInput, Text, View, TouchableOpacity } from 'react-native';
 
+import { getData, setData } from '../utils/asyncStorage';
 import authStyles from '../assets/styles/authStyles';
 
 export default function Auth({ navigation }) {
@@ -23,14 +24,27 @@ export default function Auth({ navigation }) {
             setError('Confirm password !== password');
             return;
         }
-        console.log('Submit:', { email, password });
-        setError(null);
-        setIsLoginMode(true);
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-        navigation.navigate('Home');
+        setData('userData', { email, password, isLoggedIn: true }).then(() => {
+            console.log('Submit:', { email, password });
+            setError(null);
+            setIsLoginMode(true);
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            navigation.navigate('Home');
+        }).catch((e) => {
+            console.error(e);
+        });
     };
+
+    useEffect(() => {
+        getData('userData').then((res) => {
+            if (res.isLoggedIn) {
+                navigation.navigate('Home');
+                return;
+            }
+        });
+    }, [getData]);
 
     return (
         <View style={authStyles.container}>
