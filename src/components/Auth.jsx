@@ -24,17 +24,19 @@ export default function Auth({ navigation }) {
             setError('Confirm password !== password');
             return;
         }
-        setData('userData', { email, password, isLoggedIn: true }).then(() => {
-            console.log('Submit:', { email, password });
-            setError(null);
-            setIsLoginMode(true);
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-            navigation.navigate('Home');
-        }).catch((e) => {
-            console.error(e);
-        });
+        setData('userData', { email, password, isLoggedIn: true })
+            .then(() => {
+                console.log('Submit:', { email, password });
+                setError(null);
+                setIsLoginMode(true);
+                setEmail('');
+                setPassword('');
+                setConfirmPassword('');
+                navigation.navigate('Home');
+            })
+            .catch((e) => {
+                console.error(e);
+            });
     };
 
     useEffect(() => {
@@ -58,7 +60,7 @@ export default function Auth({ navigation }) {
                 style={authStyles.input}
             />
             <TextInput
-                onChangeText={(text) => setPassword(text)}
+                onChangeText={setPassword}
                 value={password}
                 placeholder="Password"
                 style={authStyles.input}
@@ -67,7 +69,7 @@ export default function Auth({ navigation }) {
             />
             {!isLoginMode ? (
                 <TextInput
-                    onChangeText={(text) => setConfirmPassword(text)}
+                    onChangeText={setConfirmPassword}
                     value={confirmPassword}
                     placeholder="Confirm password"
                     style={authStyles.input}

@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, View, TouchableOpacity } from 'react-native';
+import {
+    ActivityIndicator,
+    Text,
+    View,
+    TouchableOpacity,
+    ScrollView,
+} from 'react-native';
 
 import homeStyles from '../assets/styles/homeStyles';
 import { getData, setData } from '../utils/asyncStorage';
+
+import BottomBar from './BottomBar';
 import Card from './Card';
 
 export default function Home({ navigation }) {
@@ -17,7 +25,6 @@ export default function Home({ navigation }) {
 
     useEffect(() => {
         getData('userData').then((res) => {
-            console.log(res);
             if (res && res !== undefined) {
                 if (!res.isLoggedIn) {
                     onLogout();
@@ -32,18 +39,12 @@ export default function Home({ navigation }) {
                 setUsers(json);
                 setIsLoading(false);
             });
-    }, [getData]);
+    }, []);
 
     if (isLoading) {
         return (
-            <View
-                style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            >
-                <ActivityIndicator color={'#fff'} />
+            <View style={homeStyles.loading}>
+                <ActivityIndicator color="red" />
             </View>
         );
     }
@@ -55,15 +56,14 @@ export default function Home({ navigation }) {
             <TouchableOpacity onPress={onLogout}>
                 <Text style={homeStyles.link}>Logout</Text>
             </TouchableOpacity>
-            <View style={homeStyles.list}>
+            <ScrollView style={homeStyles.list}>
                 {users
                     ? users.map((user) => {
-                          return (
-                              <Card key={user.id} user={user} />
-                          );
+                          return <Card key={user.id} user={user} />;
                       })
                     : null}
-            </View>
+            </ScrollView>
+            <BottomBar />
         </View>
     );
 }

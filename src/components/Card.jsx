@@ -8,5 +8,5 @@ export default function Card({ user }) {
         <View style={cardStyles.item}>
             <Text>{`${user.id}: ${user.name}`}</Text>
         </View>
-    )
+    );
 }

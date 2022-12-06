@@ -12,21 +12,31 @@ export default StyleSheet.createstyle = StyleSheet.create({
         fontSize: 30,
         marginBottom: 10,
     },
-    link: {
-        color: 'purple',
-        textDecorationLine: 'underline',
+    input: {
+        height: '30px',
+        borderWidth: 2,
+        borderColor: 'blue',
+        borderRadius: 10,
+        placeholderTextColor: 'grey',
+        textIndent: 10,
         marginBottom: 10,
-    },
-    list: {
-        flex: 1,
-        borderWidth: 1,
-        borderColor: 'black',
-        padding: 10,
     },
     loading: {
         flex: 1,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    button: {
+        borderWidth: 2,
+        borderColor: 'blue',
+        borderRadius: 5,
+        backgroundColor: 'cyan',
+        padding: 5,
+    },
+    errorMessage: {
+        textAlign: 'center',
+        color: 'red',
+        marginBottom: 10,
     },
 });
