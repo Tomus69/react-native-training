@@ -7,6 +7,8 @@ import { getData } from './src/utils/asyncStorage';
 
 const Auth = React.lazy(() => import('./src/components/Auth'));
 const Home = React.lazy(() => import('./src/components/Home'));
+const Movies = React.lazy(() => import('./src/components/Movies/index'));
+const Movie = React.lazy(() => import('./src/components/Movies/Movie'));
 const Settings = React.lazy(() => import('./src/components/Settings'));
 
 const Stack = createNativeStackNavigator();
@@ -16,7 +18,11 @@ export default function App() {
 
     useEffect(() => {
         getData('userData').then((res) => {
-            setIsLoggedIn(res.isLoggedIn);
+            if (res.isLoggedIn !== null) {
+                setIsLoggedIn(res.isLoggedIn);
+                return;
+            }
+            setIsLoggedIn(false);
         });
     }, []);
 
@@ -33,6 +39,8 @@ export default function App() {
                     >
                         <Stack.Screen name="Auth" component={Auth} />
                         <Stack.Screen name="Home" component={Home} />
+                        <Stack.Screen name="Movies" component={Movies} />
+                        <Stack.Screen name="Movie" component={Movie} />
                         <Stack.Screen name="Settings" component={Settings} />
                     </Stack.Navigator>
                 </Suspense>
