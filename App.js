@@ -9,6 +9,7 @@ const Auth = React.lazy(() => import('./src/components/Auth'));
 const Home = React.lazy(() => import('./src/components/Home'));
 const Movies = React.lazy(() => import('./src/components/Movies/index'));
 const Movie = React.lazy(() => import('./src/components/Movies/Movie'));
+const Map = React.lazy(() => import('./src/components/Map'));
 const Settings = React.lazy(() => import('./src/components/Settings'));
 
 const Stack = createNativeStackNavigator();
@@ -41,6 +42,7 @@ export default function App() {
                         <Stack.Screen name="Home" component={Home} />
                         <Stack.Screen name="Movies" component={Movies} />
                         <Stack.Screen name="Movie" component={Movie} />
+                        <Stack.Screen name="Map" component={Map} />
                         <Stack.Screen name="Settings" component={Settings} />
                     </Stack.Navigator>
                 </Suspense>

@@ -14,6 +14,9 @@ export default function BottomBar() {
             <TouchableOpacity onPress={() => navigation.navigate('Movies')}>
                 <Text>Movies</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Map')}>
+                <Text>Map</Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                 <Text>Settings</Text>
             </TouchableOpacity>
